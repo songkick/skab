@@ -34,6 +34,14 @@ module Statisfish
         run unless @differential
         @differential
       end
+
+      def self.help
+        <<-USAGE
+statisfish [output] poisson [a] [b]
+\tWhere: [a] and [b] are integers
+\tPlots the poisson distribution for [a] and [b]
+        USAGE
+      end
       
       private
 
