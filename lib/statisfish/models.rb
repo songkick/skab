@@ -5,7 +5,7 @@ module Statisfish
     def self.from_name(name)
       case name
         when 'poisson'
-          Poisson.new
+          Poisson
       end
     end
   end

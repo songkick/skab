@@ -2,12 +2,14 @@ module Statisfish
   module Models
     class Poisson
 
-      def initialize()
+      def initialize(args)
+        @a = args.shift.to_i
+        @b = args.shift.to_i
       end
 
-      def run(args)
-        a = args.shift.to_i
-        b = args.shift.to_i
+      def run
+        a = @a
+        b = @b
         limit = [a, b].max * 2
         @distribution = []
         (0..limit).each do |n|
@@ -24,10 +26,12 @@ module Statisfish
       end
 
       def distribution
+        run unless @distribution
         @distribution
       end
 
       def differential
+        run unless @differential
         @differential
       end
       
