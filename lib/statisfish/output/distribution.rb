@@ -6,8 +6,8 @@ module Statisfish
       end
 
       def output(model)
-        model.distribution.each_with_index do |d, i|
-          @out.puts "#{i},#{d.join(',')}"
+        model.distribution.each do |d|
+          @out.puts "#{d.join(',')}"
         end
       end
     end
