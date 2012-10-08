@@ -11,5 +11,9 @@ module Statisfish
           Binomial
       end
     end
+
+    def self.model_names
+      ['poisson', 'binomial']
+    end
   end
 end

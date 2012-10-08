@@ -22,7 +22,14 @@ if ARGV[0] == 'help'
   if ARGV[1] == 'model'
     if ARGV[2]
       model = Statisfish::Models.from_name(ARGV[2])
-      puts model.help
+      if model
+        puts model.help
+      else
+        puts <<-UNKNOWN_MODEL
+This model doesn't exist. List of known models:
+#{Statisfish::Models.model_names.join(', ')}
+        UNKNOWN_MODEL
+      end
     end
   else
     puts usage
@@ -31,7 +38,24 @@ if ARGV[0] == 'help'
 end
 
 model_args = ARGV.slice(2, ARGV.length)
-model = Statisfish::Models.from_name(ARGV[1]).new(model_args)
+model_class = Statisfish::Models.from_name(ARGV[1])
+unless model_class
+  puts <<-UNKNOWN_MODEL
+This model doesn't exist. List of known models:
+#{Statisfish::Models.model_names.join(', ')}
+  UNKNOWN_MODEL
+  exit
+end
 
-output = Statisfish::Output.from_name(ARGV[0]).new(STDOUT)
+output_class = Statisfish::Output.from_name(ARGV[0])
+unless output_class
+  puts <<-UNKNOWN_OUTPUT
+This output doesn't exist. List of known outputs:
+#{Statisfish::Output.output_names.join(', ')}
+  UNKNOWN_OUTPUT
+  exit
+end
+
+model = model_class.new(model_args)
+output = output_class.new(STDOUT)
 output.output(model)

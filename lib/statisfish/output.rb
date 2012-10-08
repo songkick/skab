@@ -11,5 +11,9 @@ module Statisfish
           Distribution
       end
     end
+
+    def self.output_names
+      ['distribution', 'differential']
+    end
   end
 end
