@@ -16,7 +16,14 @@ module Skab
     end
 
     def self.output_names
-      ['distribution', 'differential']
+      ['distribution', 'differential', 'summary']
+    end
+
+    def self.help
+      <<-HELP
+The following outputs are available: #{output_names.join(', ')}
+\tTry `skab help output [output] to find out more about a given output
+      HELP
     end
   end
 end

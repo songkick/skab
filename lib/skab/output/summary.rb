@@ -21,6 +21,14 @@ module Skab
 
         @out.puts "The difference is located between #{min} and #{max} (90% confidence)"
       end
+
+      def self.help
+        <<-HELP
+Usage: skab summary [model] [parameters]
+\tOutputs a summary of the whole statistical analysis conducted on A and
+\tB, using the specified model.
+        HELP
+      end
     end
   end
 end

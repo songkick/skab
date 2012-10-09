@@ -42,6 +42,20 @@ This model doesn't exist. List of known models:
     else
       puts Skab::Models.help
     end
+  elsif ARGV[1] == 'output'
+    if ARGV[2]
+      output = Skab::Output.from_name(ARGV[2])
+      if output
+        puts output.help
+      else
+        puts <<-UNKNOWN_OUTPUT
+This output doesn't exist. List of known output:
+#{Skab::Output.output_names.join(', ')}
+        UNKNOWN_OUTPUT
+      end
+    else
+      puts Skab::Output.help
+    end
   else
     puts usage
   end
