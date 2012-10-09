@@ -19,7 +19,7 @@ module Skab
           end
         end
 
-        @out.puts "The difference is located between #{min} and #{max} (90% accuracy)"
+        @out.puts "The difference is located between #{min} and #{max} (90% confidence)"
       end
     end
   end
