@@ -6,8 +6,8 @@ end
 
 usage = <<-USAGE
 Usage: statisfish [output] [model] [extra_params]
-\tTry `statisfish help [model]` for more info about a specific model and its
-\tparameters
+\tTry `statisfish help model` for more info about available models
+\tor  `statisfish help output` for more info about outputs
 USAGE
 
 require 'statisfish/models'
@@ -30,6 +30,8 @@ This model doesn't exist. List of known models:
 #{Statisfish::Models.model_names.join(', ')}
         UNKNOWN_MODEL
       end
+    else
+      puts Statisfish::Models.help
     end
   else
     puts usage

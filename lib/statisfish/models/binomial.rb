@@ -38,6 +38,15 @@ module Statisfish
         @differential
       end
 
+      def self.help
+        <<-HELP
+statisfish [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
+\tWhere: all parameters are integers
+\tPlots the binomial distribution for A and B, given their respective
+\tnumber of successes and trials
+        HELP
+      end
+
       private
 
       attr_reader :a, :b

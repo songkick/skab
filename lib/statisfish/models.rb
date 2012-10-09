@@ -15,5 +15,12 @@ module Statisfish
     def self.model_names
       ['poisson', 'binomial']
     end
+
+    def self.help
+      <<-HELP
+The following models are available: #{model_names.join(', ')}
+\tTry `statisfish help model [model] to find out more about a model
+      HELP
+    end
   end
 end
