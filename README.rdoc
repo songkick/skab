@@ -6,6 +6,11 @@ we run here at Songkick.
 We use this mainly to generate CSV files that we can plot using Google Docs
 in order to determine if an A/B test is a success or a failure.
 
+== Getting started
+
+ * Check out the project by cloning this repository
+ * From the project root directory, run `./bin/statisfish`
+
 == Command line arguments
 
     statisfish [output] [model] [model_args]
