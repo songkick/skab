@@ -4,6 +4,15 @@ unless $LOAD_PATH.include?(File.dirname(__FILE__) + '/../lib')
   $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
 end
 
+version = RUBY_VERSION.split('.').map { |s| s.to_i }
+if version[0] <= 1 && version [1] < 9
+  STDERR.puts <<-WARN18
+WARNING: This software relies on feature available in Ruby 1.9 only. Using it
+under Ruby 1.8 may yield unexpected results. Read the README for more
+information.
+  WARN18
+end
+
 usage = <<-USAGE
 Usage: statisfish [output] [model] [extra_params]
 \tTry `statisfish help model` for more info about available models
