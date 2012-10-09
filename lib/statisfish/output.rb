@@ -1,5 +1,6 @@
 require 'statisfish/output/distribution'
 require 'statisfish/output/differential'
+require 'statisfish/output/summary'
 
 module Statisfish
   module Output
@@ -9,6 +10,8 @@ module Statisfish
           Differential
         when 'distribution'
           Distribution
+        when 'summary'
+          Summary
       end
     end
 
