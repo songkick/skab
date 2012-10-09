@@ -14,13 +14,13 @@ information.
 end
 
 usage = <<-USAGE
-Usage: statisfish [output] [model] [extra_params]
-\tTry `statisfish help model` for more info about available models
-\tor  `statisfish help output` for more info about outputs
+Usage: skab [output] [model] [extra_params]
+\tTry `skab help model` for more info about available models
+\tor  `skab help output` for more info about outputs
 USAGE
 
-require 'statisfish/models'
-require 'statisfish/output'
+require 'skab/models'
+require 'skab/output'
 
 if ARGV.empty?
   puts usage
@@ -30,17 +30,17 @@ end
 if ARGV[0] == 'help'
   if ARGV[1] == 'model'
     if ARGV[2]
-      model = Statisfish::Models.from_name(ARGV[2])
+      model = Skab::Models.from_name(ARGV[2])
       if model
         puts model.help
       else
         puts <<-UNKNOWN_MODEL
 This model doesn't exist. List of known models:
-#{Statisfish::Models.model_names.join(', ')}
+#{Skab::Models.model_names.join(', ')}
         UNKNOWN_MODEL
       end
     else
-      puts Statisfish::Models.help
+      puts Skab::Models.help
     end
   else
     puts usage
@@ -49,20 +49,20 @@ This model doesn't exist. List of known models:
 end
 
 model_args = ARGV.slice(2, ARGV.length)
-model_class = Statisfish::Models.from_name(ARGV[1])
+model_class = Skab::Models.from_name(ARGV[1])
 unless model_class
   puts <<-UNKNOWN_MODEL
 This model doesn't exist. List of known models:
-#{Statisfish::Models.model_names.join(', ')}
+#{Skab::Models.model_names.join(', ')}
   UNKNOWN_MODEL
   exit
 end
 
-output_class = Statisfish::Output.from_name(ARGV[0])
+output_class = Skab::Output.from_name(ARGV[0])
 unless output_class
   puts <<-UNKNOWN_OUTPUT
 This output doesn't exist. List of known outputs:
-#{Statisfish::Output.output_names.join(', ')}
+#{Skab::Output.output_names.join(', ')}
   UNKNOWN_OUTPUT
   exit
 end

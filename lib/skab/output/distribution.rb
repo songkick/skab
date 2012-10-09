@@ -1,4 +1,4 @@
-module Statisfish
+module Skab
   module Output
     class Distribution
       def initialize(out)

@@ -1,4 +1,4 @@
-module Statisfish
+module Skab
   module Distribution
     class Poisson
     end

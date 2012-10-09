@@ -1,19 +1,19 @@
-= Statisfish
+= Skab
 
 This is a tool to help run statistical analyses of A/B testing experiments
 we run here at Songkick.
 
-We use this mainly to generate CSV files that we can plot using Google Docs
-in order to determine if an A/B test is a success or a failure.
+We use this util mainly to generate CSV files that we can plot using Google
+Docs in order to determine if an A/B test is a success or a failure.
 
 == Getting started
 
  * Check out the project by cloning this repository
- * From the project root directory, run `./bin/statisfish`
+ * From the project root directory, run `./bin/skab`
 
 == Command line arguments
 
-    statisfish [output] [model] [model_args]
+    skab [output] [model] [model_args]
 
 The command line accepts a variable number of arguments:
  * `output` is the name of the output module to use to print data
@@ -22,8 +22,8 @@ The command line accepts a variable number of arguments:
 
 == Outputs
 
-Statisfish is able to output different statistics, all based on the model
-used to generate the distribution.
+Skab is able to output different statistics, all based on the model used to
+generate the distribution.
 
 We currently support two main outputs:
  * Distribution: the discrete probability distribution for each group, 
@@ -32,8 +32,8 @@ We currently support two main outputs:
 
 == Models
 
-Statisfish currently supports two models to generate a distribution of
-the mean depending on the actual observed values:
+Skab currently supports two models to generate a distribution of the mean
+depending on the actual observed values:
  * Poisson model, working with rate of events on a specific period of time
  * Binomial model, working with success rates
 
@@ -48,7 +48,7 @@ A or B group, according to the poisson law of small numbers.
 
 Here is an example, with 1450 events observed for group A and 1430 for group B:
 
-    statisfish distribution poisson 1450 1430
+    skab distribution poisson 1450 1430
 
 It is worth noting that the Poisson distribution is expensive to compute for
 large numbers (> 100), so this model uses an approximation using a normal
@@ -66,7 +66,7 @@ For example, this command generate the binomial distribution with:
  * 200 successes out of 450 trials for group A
  * 220 successes out of 470 trials for group B
 
-    statisfish distribution binomial 450 200 470 220
+    skab distribution binomial 450 200 470 220
 
 == Known issues
 

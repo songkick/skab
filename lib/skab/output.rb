@@ -1,8 +1,8 @@
-require 'statisfish/output/distribution'
-require 'statisfish/output/differential'
-require 'statisfish/output/summary'
+require 'skab/output/distribution'
+require 'skab/output/differential'
+require 'skab/output/summary'
 
-module Statisfish
+module Skab
   module Output
     def self.from_name(name)
       case name

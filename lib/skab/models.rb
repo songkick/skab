@@ -1,7 +1,7 @@
-require 'statisfish/models/poisson'
-require 'statisfish/models/binomial'
+require 'skab/models/poisson'
+require 'skab/models/binomial'
 
-module Statisfish
+module Skab
   module Models
     def self.from_name(name)
       case name
@@ -19,7 +19,7 @@ module Statisfish
     def self.help
       <<-HELP
 The following models are available: #{model_names.join(', ')}
-\tTry `statisfish help model [model] to find out more about a model
+\tTry `skab help model [model] to find out more about a model
       HELP
     end
   end

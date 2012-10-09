@@ -1,4 +1,4 @@
-module Statisfish
+module Skab
   module Models
     class Poisson
 
@@ -32,7 +32,7 @@ module Statisfish
 
       def self.help
         <<-USAGE
-statisfish [output] poisson [a] [b]
+skab [output] poisson [a] [b]
 \tWhere: [a] and [b] are integers
 \tPlots the poisson distribution for [a] and [b]
         USAGE

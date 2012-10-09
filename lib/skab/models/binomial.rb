@@ -1,4 +1,4 @@
-module Statisfish
+module Skab
   module Models
     class Binomial
 
@@ -49,7 +49,7 @@ module Statisfish
 
       def self.help
         <<-HELP
-statisfish [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
+skab [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
 \tWhere: all parameters are integers
 \tPlots the binomial distribution for A and B, given their respective
 \tnumber of successes and trials
