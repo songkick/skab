@@ -12,12 +12,21 @@ module Statisfish
       def distribution
         return @distribution if @distribution
         @distribution = []
+        sums = [0, 0, 0]
         i = 0.0
         while i <= 1000
           @distribution[i] = []
           @distribution[i][0] = i / 1000
           @distribution[i][1] = binomial(@a_trials, @a_success, i / 1000)
           @distribution[i][2] = binomial(@b_trials, @b_success, i / 1000)
+          sums[1] += binomial(@a_trials, @a_success, i / 1000)
+          sums[2] += binomial(@b_trials, @b_success, i / 1000)
+          i += 1
+        end
+        i = 0.0
+        while i <= 1000
+          @distribution[i][1] /= sums[1]
+          @distribution[i][2] /= sums[2]
           i += 1
         end
         @distribution
