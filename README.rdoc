@@ -68,6 +68,13 @@ For example, this command generate the binomial distribution with:
 
     statisfish distribution binomial 450 200 470 220
 
+== Known issues
+
+This software relies on Hash ordering to display values in the correct order.
+On Ruby versions older than 1.9, hash ordering wasn't guaranteed, and this
+will cause some output to be inconsistent (mainly differential CSV and
+summary outputs).
+
 == LICENSE
 
 The MIT License
