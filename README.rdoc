@@ -8,8 +8,8 @@ Docs in order to determine if an A/B test is a success or a failure.
 
 == Getting started
 
-* Check out the project by cloning this repository
-* From the project root directory, run `./bin/skab`
+* Install skab by running `gem install skab`
+* You can run the util by using the `skab` command line
 
 == Command line arguments
 
