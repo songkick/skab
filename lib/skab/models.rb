@@ -1,7 +1,7 @@
-require 'skab/models/poisson'
-require 'skab/models/binomial'
-
 module Skab
+  require ROOT + '/skab/models/poisson'
+  require ROOT + '/skab/models/binomial'
+  
   module Models
     def self.from_name(name)
       case name

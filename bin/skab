@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-unless $LOAD_PATH.include?(File.dirname(__FILE__) + '/../lib')
-  $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
-end
-
 version = RUBY_VERSION.split('.').map { |s| s.to_i }
 if version[0] <= 1 && version [1] < 9
   STDERR.puts <<-WARN18
@@ -19,8 +15,7 @@ Usage: skab [output] [model] [extra_params]
 \tor  `skab help output` for more info about outputs
 USAGE
 
-require 'skab/models'
-require 'skab/output'
+require File.expand_path('../../lib/skab', __FILE__)
 
 if ARGV.empty?
   puts usage

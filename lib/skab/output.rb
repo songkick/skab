@@ -1,8 +1,8 @@
-require 'skab/output/distribution'
-require 'skab/output/differential'
-require 'skab/output/summary'
-
 module Skab
+  require ROOT + '/skab/output/distribution'
+  require ROOT + '/skab/output/differential'
+  require ROOT + '/skab/output/summary'
+
   module Output
     def self.from_name(name)
       case name
