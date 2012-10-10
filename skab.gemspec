@@ -9,7 +9,7 @@ spec = Gem::Specification.new do |s|
   s.extra_rdoc_files  = %w(README.rdoc)
   s.rdoc_options      = %w(--main README.rdoc)
 
-  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib}/**/*.{rb}")
+  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib}/**/*")
   s.require_paths     = ["lib"]
   
   s.executables       = Dir.glob("bin/**").map { |f| File.basename(f) }
