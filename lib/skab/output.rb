@@ -2,6 +2,7 @@ module Skab
   require ROOT + '/skab/output/distribution'
   require ROOT + '/skab/output/differential'
   require ROOT + '/skab/output/summary'
+  require ROOT + '/skab/output/gnuplot_distribution'
 
   module Output
     def self.from_name(name)
@@ -12,11 +13,13 @@ module Skab
           Distribution
         when 'summary'
           Summary
+        when 'gnuplot_distribution'
+          GnuplotDistribution
       end
     end
 
     def self.output_names
-      ['distribution', 'differential', 'summary']
+      ['distribution', 'differential', 'summary', 'gnuplot_distribution']
     end
 
     def self.help
