@@ -3,6 +3,7 @@ module Skab
   require ROOT + '/skab/output/differential'
   require ROOT + '/skab/output/summary'
   require ROOT + '/skab/output/gnuplot_distribution'
+  require ROOT + '/skab/output/gnuplot_differential'
 
   module Output
     def self.from_name(name)
@@ -15,11 +16,19 @@ module Skab
           Summary
         when 'gnuplot_distribution'
           GnuplotDistribution
+        when 'gnuplot_differential'
+          GnuplotDifferential
       end
     end
 
     def self.output_names
-      ['distribution', 'differential', 'summary', 'gnuplot_distribution']
+      [
+        'distribution', 
+        'differential', 
+        'summary', 
+        'gnuplot_distribution',
+        'gnuplot_differential'
+      ]
     end
 
     def self.help
