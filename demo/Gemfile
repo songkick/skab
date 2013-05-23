@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+source 'http://gems.songkick.net'
+
+gem 'skab', '~> 0.1.2'
