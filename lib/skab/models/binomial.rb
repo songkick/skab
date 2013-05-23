@@ -24,7 +24,7 @@ module Skab
           sums[2] += binomial(@b_trials, @b_success, i / 1000)
           i += 1
         end
-        i = 0.0h
+        i = 0.0
         while i <= 1000
           @distribution[i][1] /= sums[1]
           @distribution[i][2] /= sums[2]
