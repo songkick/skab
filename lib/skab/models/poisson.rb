@@ -5,6 +5,7 @@ module Skab
       def initialize(args)
         @a = args.shift.to_i
         @b = args.shift.to_i
+        @fact = { }
       end
 
       def distribution
@@ -55,13 +56,9 @@ skab [output] poisson [a] [b]
       end
 
       def factorial(n)
-        f = 1
-        (1..n).each do |i|
-          f *= i
-        end
-        f
+        return @fact[n] if @fact[n]
+        @fact[n] = (n > 1) ? n * fact(n - 1) : 1
       end
-
     end
   end
 end

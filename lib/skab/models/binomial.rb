@@ -7,6 +7,7 @@ module Skab
         @a_success = args.shift.to_i
         @b_trials = args.shift.to_i
         @b_success = args.shift.to_i
+        @fact = { }
       end
 
       def distribution
@@ -23,7 +24,7 @@ module Skab
           sums[2] += binomial(@b_trials, @b_success, i / 1000)
           i += 1
         end
-        i = 0.0
+        i = 0.0h
         while i <= 1000
           @distribution[i][1] /= sums[1]
           @distribution[i][2] /= sums[2]
@@ -67,17 +68,13 @@ skab [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
       end
 
       def binomial_coef(n, k)
-        fact(n) / (fact(k) * fact(n - k))
+        factorial(n) / (factorial(k) * factorial(n - k))
       end
 
-      def fact(n)
-        f = 1
-        (1..n).each do |i|
-          f *= i
-        end
-        f
+      def factorial(n)
+        return @fact[n] if @fact[n]
+        @fact[n] = (n > 1) ? n * factorial(n - 1) : 1
       end
-
     end
   end
 end
