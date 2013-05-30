@@ -1,4 +1,5 @@
 module Skab
+  require ROOT + '/skab/models/base'
   require ROOT + '/skab/models/poisson'
   require ROOT + '/skab/models/binomial'
   

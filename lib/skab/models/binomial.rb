@@ -83,11 +83,6 @@ skab [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
       def binomial_coef(n, k)
         factorial(n) / (factorial(k) * factorial(n - k))
       end
-
-      def factorial(n)
-        return @fact[n] if @fact[n]
-        @fact[n] = (n > 1) ? n * factorial(n - 1) : 1
-      end
     end
   end
 end

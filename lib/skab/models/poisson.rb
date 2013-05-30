@@ -1,6 +1,6 @@
 module Skab
   module Models
-    class Poisson
+    class Poisson < Base
 
       def initialize(args)
         @a = args.shift.to_i
@@ -64,11 +64,6 @@ skab [output] poisson [a] [b]
 
       def poisson(k, delta)
         ((delta ** k) * Math.exp(-delta)) / factorial(k)
-      end
-
-      def factorial(n)
-        return @fact[n] if @fact[n]
-        @fact[n] = (n > 1) ? n * fact(n - 1) : 1
       end
     end
   end
