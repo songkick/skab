@@ -13,5 +13,7 @@ spec = Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
   
   s.executables       = Dir.glob("bin/**").map { |f| File.basename(f) }
+
+  s.add_development_dependency "rspec"
 end
 
