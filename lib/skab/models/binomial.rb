@@ -27,7 +27,9 @@ module Skab
         i = 0.0
         while i <= 1000
           @distribution[i][1] /= sums[1]
+          @distribution[i][1] *= 1000
           @distribution[i][2] /= sums[2]
+          @distribution[i][2] *= 1000
           i += 1
         end
         @distribution
@@ -40,12 +42,23 @@ module Skab
         while i <= 1000
           j = 0.0
           while j <= 1000
-            @differential[(j - i) / 1000] += distribution[j][2] * distribution[i][1]
+            @differential[(j - i) / 1000] += distribution[j][2] * distribution[i][1] / 1000
             j += 1
           end
           i += 1
         end
         @differential
+      end
+
+      def percentile(p)
+        sum = 0.0
+        Hash[differential.sort].each do |k, v|
+          sum += v
+          if sum >= p * 1000
+            return k
+          end
+        end
+        percentile
       end
 
       def self.help

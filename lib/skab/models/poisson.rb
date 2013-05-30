@@ -31,6 +31,17 @@ module Skab
         @differential
       end
 
+      def percentile(p)
+        sum = 0.0
+        Hash[differential.sort].each do |k, v|
+          sum += v
+          if sum >= p
+            return k
+          end
+        end
+        percentile
+      end
+
       def self.help
         <<-USAGE
 skab [output] poisson [a] [b]
