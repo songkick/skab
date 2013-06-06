@@ -1,6 +1,6 @@
 module Skab
   module Models
-    class Binomial
+    class Binomial < Base
 
       def initialize(args)
         @a_trials = args.shift.to_i
