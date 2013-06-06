@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name              = "skab"
-  s.version           = "0.2.0"
+  s.version           = "0.2.1"
   s.summary           = "A/B testing statistical analysis utility"
   s.author            = "Vivien Barousse"
   s.email             = "vivien@songkick.com"
