@@ -8,7 +8,7 @@ module Skab
         @b_trials = args.shift.to_i
         @b_success = args.shift.to_i
         @fact = { }
-        @optims = args.shift || {:cache_pow => true, :cache_binomial_coef => true}
+        @optims = args.shift || {:cache_binomial => true, :cache_binomial_coef => true}
       end
 
       def reset

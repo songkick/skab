@@ -77,7 +77,7 @@ describe Skab::Models::Binomial do
     result
   end
 
-  describe 'distribution' do
+  describe '#distribution' do
     let(:iters) { 25 }
     let(:ta)    { 3000 }
     let(:sa)    { 250 }
