@@ -8,28 +8,39 @@ module Skab
         @b_trials = args.shift.to_i
         @b_success = args.shift.to_i
         @fact = { }
+        @optims = args.shift || {:cache_pow => true, :cache_binomial_coef => true}
       end
+
+      def reset
+        @distribution, @differential = nil, nil
+        @_binomial, @_binomial_coefs = nil, nil
+      end
+
+      NUM_SUBDIVS = 1000
 
       def distribution
         return @distribution if @distribution
         @distribution = []
         sums = [0, 0, 0]
         i = 0.0
-        while i <= 1000
+        while i <= NUM_SUBDIVS
+          i_subdivided = i / NUM_SUBDIVS
+          bin_a = binomial(@a_trials, @a_success, i_subdivided)
+          bin_b = binomial(@b_trials, @b_success, i_subdivided)
           @distribution[i] = []
-          @distribution[i][0] = i / 1000
-          @distribution[i][1] = binomial(@a_trials, @a_success, i / 1000)
-          @distribution[i][2] = binomial(@b_trials, @b_success, i / 1000)
-          sums[1] += binomial(@a_trials, @a_success, i / 1000)
-          sums[2] += binomial(@b_trials, @b_success, i / 1000)
+          @distribution[i][0] = i_subdivided
+          @distribution[i][1] = bin_a
+          @distribution[i][2] = bin_b
+          sums[1] += bin_a
+          sums[2] += bin_b
           i += 1
         end
         i = 0.0
-        while i <= 1000
+        while i <= NUM_SUBDIVS
           @distribution[i][1] /= sums[1]
-          @distribution[i][1] *= 1000
+          @distribution[i][1] *= NUM_SUBDIVS
           @distribution[i][2] /= sums[2]
-          @distribution[i][2] *= 1000
+          @distribution[i][2] *= NUM_SUBDIVS
           i += 1
         end
         @distribution
@@ -39,10 +50,10 @@ module Skab
         return @differential if @differential
         @differential = Hash.new(0)
         i = 0.0
-        while i <= 1000
+        while i <= NUM_SUBDIVS
           j = 0.0
-          while j <= 1000
-            @differential[(j - i) / 1000] += distribution[j][2] * distribution[i][1] / 1000
+          while j <= NUM_SUBDIVS
+            @differential[(j - i) / NUM_SUBDIVS] += distribution[j][2] * distribution[i][1] / NUM_SUBDIVS
             j += 1
           end
           i += 1
@@ -54,7 +65,7 @@ module Skab
         sum = 0.0
         Hash[differential.sort].each do |k, v|
           sum += v
-          if sum >= p * 1000
+          if sum >= p * NUM_SUBDIVS
             return k
           end
         end
@@ -75,13 +86,29 @@ skab [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
       attr_reader :a, :b
 
       def binomial(trials, success, rate)
-        binomial_coef(trials, success) * 
-            (rate ** success) * 
-            ((1 - rate) ** (trials - success))
+        return binomial_coef(trials, success) * rate**success * (1 - rate)**(trials - success) unless @optims[:cache_binomial]
+        @_binomials ||= {}
+
+        key = "#{trials}_#{success}_#{rate}".to_sym
+        unless @_binomials[key]
+          binomial = binomial_coef(trials, success) * rate**success * (1 - rate)**(trials - success)
+          @_binomials[key] = binomial
+          @_binomials["#{trials}_#{trials - success}_#{1 - rate}".to_sym] = binomial
+        end
+        @_binomials[key]
       end
 
       def binomial_coef(n, k)
-        factorial(n) / (factorial(k) * factorial(n - k))
+        return (factorial(n) / (factorial(k) * factorial(n - k))) unless @optims[:cache_binomial_coef]
+        @_binomial_coefs ||= {}
+
+        key = "#{n}_#{k}".to_sym
+        unless @_binomial_coefs[key]
+          coef = factorial(n) / (factorial(k) * factorial(n - k))
+          @_binomial_coefs[key] = coef
+          @_binomial_coefs["#{n}_#{n - k}".to_sym] = coef
+        end
+        @_binomial_coefs[key]
       end
     end
   end

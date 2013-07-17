@@ -10,6 +10,7 @@ describe Skab::Models::Base do
     end
   
     it "should return the factorial correctly" do
+      subject.factorial(0).should == 1
       subject.factorial(1).should == 1
       subject.factorial(10).should == (1..10).reduce(1, :*)
       subject.factorial(100).should == (1..100).reduce(1, :*)
@@ -17,5 +18,4 @@ describe Skab::Models::Base do
       subject.factorial(10000).should == (1..10000).reduce(1, :*)
     end
   end
-
 end

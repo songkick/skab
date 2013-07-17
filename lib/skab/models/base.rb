@@ -10,7 +10,7 @@ module Skab
           1 => 1
         }
 
-        raise "Illegal factorial, expecting n > 0" if n < 0
+        raise "Illegal factorial, expecting n >= 0" if n < 0
 
         last = @_factorials.keys.last
         (last..n).each do |i|
