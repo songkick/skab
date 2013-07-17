@@ -86,29 +86,39 @@ skab [output] binomial [trials_a] [successes_a] [trials_b] [successes_b]
       attr_reader :a, :b
 
       def binomial(trials, success, rate)
-        return binomial_coef(trials, success) * rate**success * (1 - rate)**(trials - success) unless @optims[:cache_binomial]
+        return binomial_impl(trials, success, rate) unless @optims[:cache_binomial]
         @_binomials ||= {}
 
         key = "#{trials}_#{success}_#{rate}".to_sym
         unless @_binomials[key]
-          binomial = binomial_coef(trials, success) * rate**success * (1 - rate)**(trials - success)
-          @_binomials[key] = binomial
-          @_binomials["#{trials}_#{trials - success}_#{1 - rate}".to_sym] = binomial
+          bin = binomial_impl(trials, success, rate)
+          @_binomials[key] = bin
+          @_binomials["#{trials}_#{trials - success}_#{1 - rate}".to_sym] = bin
         end
         @_binomials[key]
       end
 
       def binomial_coef(n, k)
-        return (factorial(n) / (factorial(k) * factorial(n - k))) unless @optims[:cache_binomial_coef]
+        return binomial_coef_impl(n, k) unless @optims[:cache_binomial_coef]
         @_binomial_coefs ||= {}
 
         key = "#{n}_#{k}".to_sym
         unless @_binomial_coefs[key]
-          coef = factorial(n) / (factorial(k) * factorial(n - k))
+          coef = binomial_coef_impl(n, k)
           @_binomial_coefs[key] = coef
           @_binomial_coefs["#{n}_#{n - k}".to_sym] = coef
         end
         @_binomial_coefs[key]
+      end
+
+      def binomial_impl(trials, success, rate)
+        binomial_coef(trials, success) *
+            (rate ** success) *
+            ((1 - rate) ** (trials - success))
+      end
+
+      def binomial_coef_impl(n, k)
+        factorial(n) / (factorial(k) * factorial(n - k))
       end
     end
   end
